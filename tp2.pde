@@ -1,3 +1,6 @@
+// Ezequiel Ruiz Comision 1 95548/3
+// https://www.youtube.com/watch?v=qBS8b-x9MIM
+
 PImage ilusion;
 float tamañocirculo = random(1, 134);
 
