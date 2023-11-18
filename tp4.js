@@ -105,6 +105,8 @@ function draw() {
       text(' Apreta R para jugar de nuevo', 400, 260);
       fill(14, 142, 19);
       score = -1;
+     
+      
     }
 
     if (juegoTerminado) {
@@ -116,6 +118,7 @@ function draw() {
       textSize(10);
       text('Apreta R para jugar de nuevo', 400, 260);
       text('Apreta T para ir a creditos', 400, 320);
+      
       noLoop();
     }
   }
@@ -148,7 +151,10 @@ function keyPressed() {
         score = 0;
         score++;
         juegoTerminado = false;
+        obstaculo = width;
         loop();
+        
+      
       }
     }
 
@@ -163,6 +169,8 @@ function keyPressed() {
         juegoTerminado = false;
         loop();
         pantallaCreditos = true;
+        obstaculo = width;
+        
       }
     }
   }
