@@ -1,4 +1,5 @@
 // Ezequiel Ruiz 95548/3 Comision 1
+// https://www.youtube.com/watch?v=eS370GBzgik&ab_channel=ezequielruiz
 
 let pantallaInicio = true;
 let pantallaCreditos = false; 
@@ -17,6 +18,8 @@ let score;
 let juegoTerminado = false;
 let ultimoSalto = 0;
 const tiempoMinimoEntreSaltos = 500;
+let image
+
 
 function setup() {
   createCanvas(800, 400);
@@ -27,9 +30,11 @@ function setup() {
   dinoX = 50;
   dinoY = 200;
   score = 0;
+
 }
 
 function draw() {
+  
   if (pantallaInicio) {
     background(48, 140, 250);
     textSize(32);
