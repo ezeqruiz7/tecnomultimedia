@@ -26,7 +26,7 @@ class Aplicacion {
     this.juego = new Juego();
   }
 
-  // Método agregado para manejar la lógica del movimiento del carro
+
   moverCarro() {
     this.juego.moverCarro();
   }
@@ -37,7 +37,7 @@ class Aplicacion {
     } else {
       image(this.pantalla[this.numero], 0, 0, width, height);
       this.botonCuadrado(this.x, this.y, this.ladox, this.ladoy);
-      if (this.numero == 6) {  // Cambiado el número de pantalla
+      if (this.numero == 6) {  
         this.botonCuadrado(this.x1, this.y1, this.ladox, this.ladoy);
         this.botonCuadrado(width / 2 - this.ladox/2, this.y1, this.ladox, this.ladoy);
       }
@@ -60,12 +60,22 @@ class Aplicacion {
 
   mousePresionado() {
     if (this.estadoJuego) {
-      // Lógica para el juego en curso
+  
       this.juego.teclaPresionada();
 
-      // Verifica si el juego ha terminado (ganado o perdido)
-      if (this.juego.gameOver || this.juego.gameWin) {
-        this.numero = 5;  // Transición de vuelta a la pantalla 5
+  if (this.juego.gameOver) {
+ 
+      this.numero = 0;
+      this.estadoJuego = false;
+      this.juego.stones = [];
+      this.juego.score = 0;
+      this.juego.gameOver = false;
+      this.juego.gameWin = false;
+      this.juego.car = new Car();
+    }
+    
+      if (this.juego.gameWin) {
+        this.numero = 5; 
         this.estadoJuego = false;
         this.juego.stones = [];
         this.juego.score = 0;
@@ -74,7 +84,7 @@ class Aplicacion {
         this.juego.car = new Car();
       }
     } else {
-      // Lógica para cuando el juego no está en curso
+    
       if (this.numero !== 4) {
         if (mouseX >= this.x && mouseX <= this.ladox + this.x && mouseY >= this.y && mouseY <= this.y + this.ladoy) {
           this.numero = (this.numero + 1) % this.pantalla.length;
@@ -97,19 +107,18 @@ class Aplicacion {
       }
 
       if (this.numero == 4) {
-        this.iniciarJuego();  // Llamamos a la función que inicia el juego
+        this.iniciarJuego();  
       }
     }
 
-    // Verificar si estamos en la pantalla 28
     if (this.numero == 28) {
-      this.moverCarro(); // Llama al método que maneja el movimiento del carro
+      this.moverCarro(); 
     }
   }
 
   iniciarJuego() {
-    this.estadoJuego = true;  // Marcamos que el juego está en curso
-    this.juego = new Juego();  // Creas una nueva instancia de la clase Juego
+    this.estadoJuego = true;  
+    this.juego = new Juego();  
   }
 
   botonCuadrado(x, y, ladox, ladoy) {

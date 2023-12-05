@@ -3,7 +3,7 @@ class Juego {
     this.stones = [];
     this.score = 0;
     this.gameOver = false;
-    this.gameWin = false; // Nueva variable para controlar si se mostró la pantalla de victoria
+    this.gameWin = false; 
     this.car = new Car();
     this.fondo = loadImage('data/marte.jpg');
   }
