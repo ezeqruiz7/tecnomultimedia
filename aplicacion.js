@@ -37,7 +37,7 @@ class Aplicacion {
     } else {
       image(this.pantalla[this.numero], 0, 0, width, height);
       this.botonCuadrado(this.x, this.y, this.ladox, this.ladoy);
-      if (this.numero == 6) {  
+      if (this.numero == 6) {
         this.botonCuadrado(this.x1, this.y1, this.ladox, this.ladoy);
         this.botonCuadrado(width / 2 - this.ladox/2, this.y1, this.ladox, this.ladoy);
       }
@@ -58,24 +58,28 @@ class Aplicacion {
     }
   }
 
+  mouseSobreBoton(x, y, ladox, ladoy) {
+    return mouseX >= x && mouseX <= x + ladox && mouseY >= y && mouseY <= y + ladoy;
+  }
+  
   mousePresionado() {
     if (this.estadoJuego) {
-  
+
       this.juego.teclaPresionada();
 
-  if (this.juego.gameOver) {
- 
-      this.numero = 0;
-      this.estadoJuego = false;
-      this.juego.stones = [];
-      this.juego.score = 0;
-      this.juego.gameOver = false;
-      this.juego.gameWin = false;
-      this.juego.car = new Car();
-    }
-    
+      if (this.juego.gameOver) {
+
+        this.numero = 0;
+        this.estadoJuego = false;
+        this.juego.stones = [];
+        this.juego.score = 0;
+        this.juego.gameOver = false;
+        this.juego.gameWin = false;
+        this.juego.car = new Car();
+      }
+
       if (this.juego.gameWin) {
-        this.numero = 5; 
+        this.numero = 5;
         this.estadoJuego = false;
         this.juego.stones = [];
         this.juego.score = 0;
@@ -84,41 +88,40 @@ class Aplicacion {
         this.juego.car = new Car();
       }
     } else {
-    
       if (this.numero !== 4) {
-        if (mouseX >= this.x && mouseX <= this.ladox + this.x && mouseY >= this.y && mouseY <= this.y + this.ladoy) {
+        if (this.mouseSobreBoton(this.x, this.y, this.ladox, this.ladoy)) {
           this.numero = (this.numero + 1) % this.pantalla.length;
           this.numeroboton = (this.numeroboton + 1) % this.boton.length;
         }
       }
 
       if (this.numero == 20 || this.numero == 25 || this.numero == 28) {
-        if (mouseX >= this.x && mouseX <= this.ladox + this.x && mouseY >= this.y && mouseY <= this.y + this.ladoy) {
+        if (this.mouseSobreBoton(this.x, this.y, this.ladox, this.ladoy)) {
           this.numero = 28;
         }
       }
 
       if (this.numero == 6) {
-        if (mouseX >= this.x1 && mouseX <= this.ladox + this.x1 && mouseY >= this.y1 && mouseY <= this.y1 + this.ladoy) {
+        if (this.mouseSobreBoton(this.x1, this.y1, this.ladox, this.ladoy)) {
           this.numero = 20;
-        } else if (mouseX >= width / 2 - this.ladox/2 && mouseX <= width/2 + this.ladox/2 && mouseY >= this.y1 && mouseY <= this.y1 + this.ladoy) {
+        } else if (this.mouseSobreBoton(width / 2 - this.ladox/2, this.y1, this.ladox, this.ladoy)) {
           this.numero = 25;
         }
       }
 
       if (this.numero == 4) {
-        this.iniciarJuego();  
+        this.iniciarJuego();
       }
     }
 
     if (this.numero == 28) {
-      this.moverCarro(); 
+      this.moverCarro();
     }
   }
 
   iniciarJuego() {
-    this.estadoJuego = true;  
-    this.juego = new Juego();  
+    this.estadoJuego = true;
+    this.juego = new Juego();
   }
 
   botonCuadrado(x, y, ladox, ladoy) {
@@ -131,8 +134,8 @@ class Aplicacion {
     textSize(22);
     fill(0);
     if (this.numero == 0) {
-       textAlign(LEFT, CENTER);
-       text(this.boton[this.numero], x + 5, y + 25);
+      textAlign(LEFT, CENTER);
+      text(this.boton[this.numero], x + 5, y + 25);
     } else if (this.numero == 24 || this.numero == 27 || this.numero == 19) {
       textAlign(LEFT, CENTER);
       text(this.boton[2], x + 5, y + 25);

@@ -55,7 +55,7 @@ class Juego {
     textAlign(CENTER, CENTER);
     text('¡PERDISTE!', width / 2, height / 2);
     textSize(20);
-    text('Haz click para continuar', width / 2, height / 2 + 100);
+    text('Haz click para reinicar', width / 2, height / 2 + 100);
   }
 
   mostrarVictoria() {
